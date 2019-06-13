@@ -1,0 +1,10 @@
+# Makefile for mingw32-make
+CC=gcc
+
+all:	fix_survival.exe
+
+fix_survival.exe:	fix_survival.c
+	$(CC) -o$@ $^
+
+clean:
+	del *.exe
