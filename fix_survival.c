@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-const char *logpath="fixed_viruses.log";
+const char *logpath="C:\\fixed_viruses.log";
 FILE *logfile=NULL;
 int nfixed_viruses=0;	// How many viruses have this program fixed
 char buf[BUFSIZ];
