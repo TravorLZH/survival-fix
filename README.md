@@ -11,5 +11,11 @@ Use `mingw32-make` on Windows as long as you have [MinGW][2] properly installed.
 
 > For convenience, the latest binary build is in the source tree.
 
+## Instruction
+
+1. Copy `fix_survival.exe` to the directory that is infected by `SURVIVAL.vbe`
+(Usually the root directory of a USB)
+2. Click the copied `fix_survival.exe` in that directory to clean the virus.
+
 [1]: https://www.winehq.org
 [2]: http://www.mingw.org

@@ -25,7 +25,7 @@ void iterate_thru_directory(void)
 		exit(-1);
 	}
 	while((ent=readdir(dir))!=NULL){
-		printf("Fixing %s...\n",ent->d_name);
+		printf("Recovering %s...\n",ent->d_name);
 		//sprintf(buf,"attrib -s -h -r \"%s\"",ent->d_name);
 		//if((ret=system(buf))!=0){
 		//	perror("system() failed");
@@ -53,18 +53,31 @@ void clean_temp(void)
 	unlink(buf);	// No error checks needed here
 }
 
+void kill_wscript(void)
+{
+	// No error checks, sometimes `wscript.exe' is not running
+	system("taskkill /f /im wscript.exe 2>NUL");
+}
+
 int main(int argc,char **argv)
 {
+	int i;
 	logfile=fopen(logpath,"r");
 	if(logfile!=NULL){	// If file exists
 		fscanf(logfile,"%d",&nfixed_viruses);
 		fclose(logfile);
 	}
-	printf("Dummy...\n");
+	system("color a0");
+	puts("SURVIVAL.vbe removal by Travor Liu <travor_lzh@outlook.com>");
+	puts("===========================================================");
+	kill_wscript();
 	clean_temp();
 	iterate_thru_directory();
 	logfile=fopen(logpath,"w");
 	nfixed_viruses++;
 	fprintf(logfile,"%d",nfixed_viruses);
+	fclose(logfile);
+	printf("You have now removed %d SURVIVAL.vbe viruses",nfixed_viruses);
+	system("pause");
 	return 0;
 }
