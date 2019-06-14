@@ -1,4 +1,4 @@
-SURVIVAL.vbe cleaner
+SURVIVAL.vbe Removal
 ====================
 
 This project is intended to clean SURVIVAL.vbe virus out of the USB in order to
