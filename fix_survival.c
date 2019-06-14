@@ -14,12 +14,15 @@ void iterate_thru_directory(void)
 	int ret;
 	DIR *dir;
 	struct dirent *ent;
+	puts("Removing shortcuts...");
 	system("del *.lnk");	// Delete symbolic link files (No error checks)
 	ret=(int)getcwd(buf,BUFSIZ);	// Get the current directory
 	if(ret==0){
 		perror("getcwd() failed");
 		exit(-1);
 	}
+	puts("Removing SURVIVAL.vbe...");
+	unlink("SURVIVAL.vbe");		// Remove the virus file
 	if((dir=opendir(buf))==NULL){
 		perror("opendir() failed");
 		exit(-1);
@@ -39,7 +42,6 @@ void iterate_thru_directory(void)
 	sprintf(buf2,"%s\\System Volume Information",buf);
 	SetFileAttributesA((const char*)buf2,
 			FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM);
-	unlink("SURVIVAL.vbe");		// Remove the virus file
 }
 
 void clean_temp(void)
@@ -67,7 +69,7 @@ int main(int argc,char **argv)
 		fscanf(logfile,"%d",&nfixed_viruses);
 		fclose(logfile);
 	}
-	system("color a0");
+	system("color 0a");
 	puts("SURVIVAL.vbe removal by Travor Liu <travor_lzh@outlook.com>");
 	puts("===========================================================");
 	kill_wscript();
